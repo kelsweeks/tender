@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  user: one
+  plant_tender: one
+
+two:
+  date: MyString
+  user: two
+  plant_tender: two
