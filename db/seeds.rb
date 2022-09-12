@@ -5,12 +5,13 @@
 
 puts "seeding"
 
-Plant.create(name: 'Ageratum',location: "6304 kaiwiki Pl", plant_type: "Annual", care: "water once a week", user_id: 1)
+user1 = User.create(username: "jcsn", name: "Jose Simosa", email: "josecarlossimosa@gmail.com")
 
-User.create(username: "jcsn", name: "Jose Simosa", email: "josecarlossimosa@gmail.com")
+Plant.create!(name: 'Ageratum',location: "6304 kaiwiki Pl", plant_type: "Annual", care: "water once a week", user_id: user1.id)
 
-PlantTender.create(name: "Michael Ortiz", phone: "222-232323")
-Appointment.create(date: "sep/19/2022", user_id:2, plant_tender_id: 1)
+
+plant_tender1 = PlantTender.create(name: "Michael Ortiz", phone: "222-232323")
+Appointment.create(date: "sep/19/2022", user_id:user1.id, plant_tender_id: plant_tender1.id)
 
 # Power.create([
 #     { name: "super strength", description: "gives the wielder super-human strengths" },
