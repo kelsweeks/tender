@@ -1,5 +1,7 @@
 class AppointmentsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
     def index 
         appointments = Appointment.all 
         render json:appointments, status: :ok
@@ -9,9 +11,12 @@ class AppointmentsController < ApplicationController
         render json:appointment, status: :ok
     end
     def create 
-        appointment = Appointment.create(appointment_params)
+        appointment = Appointment.create!(appointment_params)
         render json:appointment, status: :created
     end
+
+
+    
     private 
     def appointment_params 
         params.permit(:date,:user_id,:plant_tender_id)
@@ -21,7 +26,7 @@ class AppointmentsController < ApplicationController
     end
     def invalid_record(exception)
         render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
-        end
+    end
     
 
 end
