@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+
+import { useEffect,useState } from 'react';
 import './App.css';
+import SubmitForm from "./SubmitForm" 
+import PlantTenderCard from './PlantTenderCard';
+import { Route } from 'react-router';
 
 function App() {
+
+  const [plantTenders, setPlantTenders] = useState([])
+  const [errors, setErrors] = useState(false)
+
+
+  useEffect(() => {
+    fetch('/plant_tenders')
+    .then(res => {
+      if(res.ok){
+        res.json().then(setPlantTenders)
+      }else {
+        res.json().then(data => setErrors(data.error))
+      }
+    })
+  },[])
+
+ 
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    <Route path={"/test"}>
+        {plantTenders.map(plantTender => <PlantTenderCard key={plantTender.id} plantTender={plantTender}/>)}
+     </Route>
+
+     
     </div>
   );
 }
