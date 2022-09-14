@@ -1,7 +1,7 @@
-# Plant.destroy_all
-
-# PlantTender.destroy_all
-# Appointment.destroy_all
+Plant.destroy_all
+Appointment.destroy_all
+PlantTender.destroy_all
+User.destroy_all
 
 puts "🧑‍🌾 Seeding Users..."
 user1 = User.create(username: "jcsn", name: "Jose Simosa", email: "josecarlossimosa@gmail.com")
