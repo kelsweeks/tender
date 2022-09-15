@@ -1,16 +1,15 @@
-
+import { useHistory } from 'react-router';
 import { useEffect,useState } from 'react';
 import './App.css';
-import SubmitForm from "./SubmitForm" 
-import PlantTenderCard from './PlantTenderCard';
 import { Route, Switch } from 'react-router';
-import Plants from './Plants';
-import Login from './login';
 import NavBar from './NavBar';
+import LoggedIn from './LoggedIn';
+import LoggedOut from './LoggedOut';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const history = useHistory()
 
   useEffect(() => {
     fetch('/users').then((res) => {
@@ -23,49 +22,21 @@ function App() {
     });
   }, []);
 
+  const Logout = () => {
+    setCurrentUser(null);
+    fetch('/users', {method: "DELETE"})
+    .then(()=> history.push('/login'))
+    }
 
-  console.log(currentUser)
-  const [plantTenders, setPlantTenders] = useState([])
-  const [errors, setErrors] = useState(false)
 
-
-  useEffect(() => {
-    fetch('/plant_tenders')
-    .then(res => {
-      if(res.ok){
-        res.json().then(setPlantTenders)
-      }else {
-        res.json().then(data => setErrors(data.error))
-      }
-    })
-  },[])
-
- 
-  
   return (
     <div className="App">
-    <NavBar />
-    <Switch>
-      <Route strict path={"/plants"}>
-      <Plants />
-      </Route>
-
-      <Route path={"/Plant_Tenders"}>
-          {plantTenders.map(plantTender => <PlantTenderCard key={plantTender.id} plantTender={plantTender}/>)}
-      </Route>
-    <Route path={'/signup'}>  
-      <SubmitForm/>
-    </Route>
-    
-    
-    <Route path={"/login"}>
-      <Login />
-    </Route>  
-
-     
-    </Switch>
+      
+        <Route>    
+          {isAuthenticated ? <LoggedIn Logout = {Logout}/> : <LoggedOut/>}
+        </Route>
     </div>
   );
-}
+};
 
 export default App;

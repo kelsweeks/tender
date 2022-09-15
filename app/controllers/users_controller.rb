@@ -8,6 +8,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
     end
     
     def show 
+        byebug
         if current_user
             render json: current_user, status: :ok
         else 
@@ -31,9 +32,8 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
         render json:user, status: :accepted
     end
     def destroy
-        user = User.find(params[:id])
-        user.destroy
-        head :no_content 
+        session.delete :user_id
+      end
     end
 
     private 
