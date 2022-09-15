@@ -19,11 +19,18 @@ function Plant() {
         })
       },[])
 
+      const FreshPlant = (FreshPlant) => {
+        console.log("hello")
+        setPlants(plants => [FreshPlant, ...plants])
+      } 
+
 
     
     return (
+        
         <div>
-            <PlantForm />
+          {/* <PlantCard /> */}
+          <PlantForm FreshPlant = {FreshPlant}/>
           {plants.map(plant => <PlantCard key={plant.id} plant={plant}/>)}
         </div>
         

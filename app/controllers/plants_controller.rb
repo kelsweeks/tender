@@ -11,8 +11,14 @@ class PlantsController < ApplicationController
         render json:plant, status: :ok
     end
     def create 
+        byebug
         plant = Plant.create!(plant_params)
-        render json: plant, status: :created
+        if plant.valid?
+            # session[:plant_id] = plant.id
+            render json:plant, status: :created
+        else
+            render json: plant.errors.full_messages, status: :unprocessable_entity
+        end
     end
     def update 
         plant = Plant.find(params[:id])

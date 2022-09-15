@@ -22,7 +22,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
             render json: user, status: :ok
         else
             render json: user.errors.full_messages, status: :unprocessable_entity
-          end
+        end
     end
 
     def update 
