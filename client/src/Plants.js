@@ -1,6 +1,7 @@
 import React from "react";
 import {useEffect,useState} from "react"
 import PlantCard from "./PlantCard";
+import PlantForm from "./PlantForm";
 
 function Plant() {
     
@@ -17,9 +18,12 @@ function Plant() {
           }
         })
       },[])
+
+
     
     return (
         <div>
+            <PlantForm />
           {plants.map(plant => <PlantCard key={plant.id} plant={plant}/>)}
         </div>
         

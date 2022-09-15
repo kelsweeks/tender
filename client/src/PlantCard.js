@@ -2,7 +2,6 @@ import React from "react";
 
 function PlantCard({plant}){
 
-    console.log(plant)
     return(
         <div>
             

@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   
   # route to test your configuration
-  get '/hello', to: 'application#hello_world'
+  post "/login", to: "sessions#create" 
+  get 'sessions/create'
+  get '/me', to: "users#show"
 end

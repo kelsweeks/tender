@@ -5,7 +5,7 @@ import {useHistory} from "react-router-dom"
 function SubmitForm() {
     const [username, setUserName] = useState('')
     const [name, setName] = useState('')
-    const [password_digest, setPassword_digest] = useState('')
+    const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [errors, setErrors] = useState ([])
     const history = useHistory()
@@ -16,7 +16,7 @@ function SubmitForm() {
                 name: name,
                 username: username,
                 email: email,
-                password_digest: password_digest
+                password: password
             }
             
             fetch(`/users`,{
@@ -24,7 +24,7 @@ function SubmitForm() {
               headers:{'Content-Type': 'application/json'},
               body:JSON.stringify(user)
             })
-                .then(res => {
+               .then(res => {
                 if(res.ok){
                     res.json().then(user => {
                         history.push(`/home`)
@@ -43,7 +43,7 @@ function SubmitForm() {
         <form onSubmit={submitData}>
         <input placeholder="Name" onChange={(e) => setName(e.target.value)}></input> 
         <input placeholder="Username" onChange={(e) => setUserName(e.target.value)}></input>
-        <input placeholder="Password" onChange={(e) => setPassword_digest(e.target.value)}></input>
+        <input placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
         <input placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
         <input type='submit' value='Sign Up'></input>
         </form>

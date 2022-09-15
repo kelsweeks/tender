@@ -5,8 +5,8 @@ User.destroy_all
 
 puts "seeding"
 
-user1 = User.create(username: "jcsn", name: "Jose Simosa", email: "josecarlossimosa@gmail.com",password_digest: "123")
-user2 = User.create(username: "juanjcc", name: "Juan Schutlze", email: "juansimosa@gmail.com",password_digest: "1468")
+user1 = User.create(username: "jcsn", name: "Jose Simosa", email: "josecarlossimosa@gmail.com",password: "123")
+user2 = User.create(username: "juanjcc", name: "Juan Schutlze", email: "juansimosa@gmail.com",password: "1468")
 
 Plant.create!(name: 'Ageratum',location: "6304 kaiwiki Pl", plant_type: "Annual", care: "water once a week", user_id: user1.id)
 Plant.create!(name: 'American Marigold',location: "3844 Keanu St", plant_type: "Annual", care: "water every day", user_id: user2.id)

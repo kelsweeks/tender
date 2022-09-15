@@ -8,19 +8,23 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
     end
     
     def show 
-        if current_user = User.find(params[:id])
+        if current_user
             render json: current_user, status: :ok
         else 
             render json: {error: "not current user stored"}, status: :unauthorized
         end
     end
     
-    def create 
+    def create
         user = User.create!(user_params)
-        session[:user_id] = user.id
-        render json:user, status: :created
+        if user.valid?
+            session[:user_id] = user.id 
+            render json: user, status: :ok
+        else
+            render json: user.errors.full_messages, status: :unprocessable_entity
+          end
     end
-    
+
     def update 
         user = User.find(params[:id])
         User.update!(user_params)
@@ -40,6 +44,6 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
         render json: {error: "#{invalid.model} not found"},status: :not_found
     end
     def user_params
-        params.permit(:username,:name,:email,:password_digest)
+        params.permit(:username,:name,:email,:password)
     end
 end
