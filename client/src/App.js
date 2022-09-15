@@ -12,7 +12,7 @@ function App() {
   const history = useHistory()
 
   useEffect(() => {
-    fetch('/users').then((res) => {
+    fetch("/me").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
           setCurrentUser(user);
@@ -22,18 +22,18 @@ function App() {
     });
   }, []);
 
-  const Logout = () => {
-    setCurrentUser(null);
-    fetch('/users', {method: "DELETE"})
-    .then(()=> history.push('/login'))
-    }
+  // const Logout = () => {
+  //   setCurrentUser(null);
+  //   fetch('/users', {method: "DELETE"})
+  //   .then(()=> history.push('/login'))
+  //   }
 
 
   return (
     <div className="App">
       
         <Route>    
-          {isAuthenticated ? <LoggedIn Logout = {Logout}/> : <LoggedOut/>}
+          {isAuthenticated ? <LoggedIn /> : <LoggedOut/>}
         </Route>
     </div>
   );

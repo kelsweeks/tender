@@ -10,6 +10,5 @@ Rails.application.routes.draw do
   
   # route to test your configuration
   post "/login", to: "sessions#create" 
-  get 'sessions/create'
   get '/me', to: "users#show"
 end

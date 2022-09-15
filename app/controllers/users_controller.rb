@@ -8,7 +8,6 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
     end
     
     def show 
-        byebug
         if current_user
             render json: current_user, status: :ok
         else 
@@ -23,7 +22,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
             render json: user, status: :ok
         else
             render json: user.errors.full_messages, status: :unprocessable_entity
-          end
+        end
     end
 
     def update 
@@ -33,8 +32,8 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
     end
     def destroy
         session.delete :user_id
-      end
     end
+    
 
     private 
     def invalid_record(exception)

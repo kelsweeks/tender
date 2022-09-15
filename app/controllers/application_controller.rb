@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
 
-    # def current_user 
-    #     User.find(session[:user.id])
-    # end
+    def current_user 
+        @current_user||=User.find(session[:user_id])
+    end
     # before_action :authorized
     # def authorized 
     #     return render json: {error: "Not authorized"}, status: :unauthorized
