@@ -4,21 +4,22 @@ import Plants from './Plants';
 import PlantTender from './PlantTender';
 import NavBar from "./NavBar";
 
-function LoggedIn({Logout}) {
+
+function LoggedIn({logout}) {
 
 
     return (
         <div>
         <NavBar />
         <Switch>
-            <Route strict path={"/plants"}>
+            <Route strict path="/plants">
                 <Plants />
             </Route>
-
-            <Route path={"/Plant_Tenders"}>
+            <Route path="/Plant_Tenders">
                 <PlantTender />
             </Route>
-      </Switch>
+        </Switch>
+        <button onClick={logout}>log out!</button>
         </div>
     )
 }

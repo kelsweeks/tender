@@ -9,16 +9,13 @@ function LoggedOut() {
         <div>
              <h1> Please signup or login if you have an Account</h1>
             
-            <Switch>
-                <Route path={'/signup'}>  
+                <Route path='/signup'>  
                     <SubmitForm/>
                 </Route>
-                <Route path={"/login"}>
+                <Route path="/login">
                     <Login />
                 </Route>  
-                
-
-            </Switch>
+    
         </div>
     )
 }

@@ -5,7 +5,7 @@ function NavBar(){
     return (
         <div>
             <h1>Tenders</h1>
-            <ul>
+            <ul className="navbar">
                 <li>
                 <Link to="/signup">Sign Up</Link>
                 </li>

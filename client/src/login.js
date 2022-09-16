@@ -23,7 +23,7 @@ function Login() {
           .then(res => {
               if(res.ok){
                   res.json().then(user => {
-                      history.push(`/users/${user.id}`)
+                      history.push(`/plants`)
                   })
               }else {
                   res.json().then(json => setErrors(json.errors))
@@ -31,8 +31,6 @@ function Login() {
           })
       }
     
-    
-    console.log(username, password)
     return (
         <div>   
             <form onSubmit={onSubmit}>

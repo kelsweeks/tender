@@ -18,13 +18,29 @@ function Plant() {
           }
         })
       },[])
-
-
+      
+    //    
+    const deletePlant = (id) => setPlants(plants.filter(p => p.id !== id))
+      //console.log(plants.filter(p => p.id !== id))
+      const newPlant = (FreshPlant) => {
+        setPlants(plants => [FreshPlant, ...plants])
+      }
     
+      const updatePlant = (updatedPlant) => setPlants(plantobj => {
+        return plantobj.map(plant => {
+         if(plant.id === updatedPlant.id){
+           return updatedPlant
+         } else {
+           return plant
+         }
+        })
+      })
+    
+
     return (
         <div>
-            <PlantForm />
-          {plants.map(plant => <PlantCard key={plant.id} plant={plant}/>)}
+            <PlantForm newPlant={newPlant} />
+          {plants.map(plant => <PlantCard key={plant.id} plant={plant} deletePlant={ deletePlant } updatePlant={updatePlant}/>)}
         </div>
         
     )

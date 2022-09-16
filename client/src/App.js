@@ -2,7 +2,6 @@ import { useHistory } from 'react-router';
 import { useEffect,useState } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router';
-import NavBar from './NavBar';
 import LoggedIn from './LoggedIn';
 import LoggedOut from './LoggedOut';
 
@@ -18,22 +17,25 @@ function App() {
           setCurrentUser(user);
           setIsAuthenticated(true);
         });
+      } else {
+        res.json().then(console.log)
       }
     });
   }, []);
 
-  // const Logout = () => {
-  //   setCurrentUser(null);
-  //   fetch('/users', {method: "DELETE"})
-  //   .then(()=> history.push('/login'))
-  //   }
-
-
+  const logout = () => {
+    setCurrentUser(null);
+    setIsAuthenticated(false) 
+    fetch('/users', {method: "DELETE"})
+    .then(()=> history.push('/login'))
+    }
+ 
+    console.log(isAuthenticated)
   return (
     <div className="App">
       
-        <Route>    
-          {isAuthenticated ? <LoggedIn /> : <LoggedOut/>}
+        <Route path='/'>    
+          {isAuthenticated ? <LoggedIn logout={logout}/> : <LoggedOut/>}
         </Route>
     </div>
   );
