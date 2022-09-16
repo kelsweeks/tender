@@ -4,9 +4,9 @@ function PlantTenderCard({plantTender}){
     
     
     
-console.log(plantTender)
+
     return (
-        <div>
+        <div className="plants">
         <ol>{plantTender.name}</ol>
         <li>{plantTender.phone}</li>
         </div>

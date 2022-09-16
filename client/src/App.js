@@ -30,10 +30,9 @@ function App() {
     .then(()=> history.push('/login'))
     }
  
-    console.log(isAuthenticated)
   return (
     <div className="App">
-      
+        <h1 className="text-3xl text-gray-700 font-bold mb-5">Tenders</h1>
         <Route path='/'>    
           {isAuthenticated ? <LoggedIn logout={logout}/> : <LoggedOut/>}
         </Route>

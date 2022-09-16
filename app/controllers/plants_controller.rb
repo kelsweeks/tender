@@ -1,6 +1,5 @@
 class PlantsController < ApplicationController
-    rescue_from ActiveRecord::RecordInvalid, with: :invalid_record  
-    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
 
     def index 
         plants = Plant.all 
@@ -10,14 +9,25 @@ class PlantsController < ApplicationController
         plant = Plant.find(params(:id))
         render json:plant, status: :ok
     end
+
     def create 
         plant = Plant.create!(plant_params)
-        render json: plant, status: :created
+        if plant
+            render json:plant, status: :created
+        else
+            render json: plant.errors.full_messages, status: :unprocessable_entity
+        end
     end
+
     def update 
         plant = Plant.find(params[:id])
         plant.update!(plant_params)
         render json:plant, status: :accepted
+    end
+    def destroy
+        plant = Plant.find(params[:id])
+        plant.destroy
+        head :no_content
     end
 
 
@@ -29,7 +39,6 @@ class PlantsController < ApplicationController
     def invalid_record(exception)
         render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
     end
-    def not_found(invalid) 
-        render json: {error: "#{invalid.model} not found"},status: :not_found
-    end
+ 
 end
+

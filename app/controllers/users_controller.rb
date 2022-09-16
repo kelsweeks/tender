@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
 rescue_from ActiveRecord::RecordInvalid, with: :invalid_record  
 
     def index 
@@ -9,7 +9,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
     
     def show 
         if current_user
-            render json: current_user, status: :ok
+            render json:current_user, status: :ok
         else 
             render json: {error: "not current user stored"}, status: :unauthorized
         end
@@ -30,6 +30,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
         User.update!(user_params)
         render json:user, status: :accepted
     end
+    
     def destroy
         session.delete :user_id
     end
@@ -38,9 +39,6 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
     private 
     def invalid_record(exception)
         render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
-    end
-    def not_found(invalid) 
-        render json: {error: "#{invalid.model} not found"},status: :not_found
     end
     def user_params
         params.permit(:username,:name,:email,:password)

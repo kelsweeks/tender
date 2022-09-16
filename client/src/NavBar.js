@@ -3,20 +3,19 @@ import {Link} from "react-router-dom"
 
 function NavBar(){
     return (
-        <div>
-            <h1>Tenders</h1>
-            <ul className="navbar">
+        <div className="navbar">
+            <ul>
                 <li>
-                <Link to="/signup">Sign Up</Link>
+                <Link to="/signup" style={{ textDecoration: 'none' }}>Sign Up</Link>
                 </li>
                 <li>
-                <Link to="/login">Login</Link>
+                <Link to="/login" style={{ textDecoration: 'none' }}>Login</Link>
                 </li>
                 <li>
-                <Link to="/plants">plants</Link>
+                <Link to="/plants" style={{ textDecoration: 'none' }}>plants</Link>
                 </li>
                 <li>
-                <Link to ="/plant_tenders">Plant Tenders</Link>    
+                <Link to ="/plant_tenders" style={{ textDecoration: 'none' }}>Plant Tenders</Link>    
                 </li>
             </ul>
         </div>
