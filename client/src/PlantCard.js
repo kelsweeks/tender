@@ -4,6 +4,7 @@ import {useState} from "react"
 
 
 
+
 function PlantCard({plant, deletePlant,updatePlant}){
 
     const [errors, setErrors] = useState('')
@@ -65,16 +66,20 @@ function PlantCard({plant, deletePlant,updatePlant}){
         console.log(e.target)
       }
     return(
-        <div>
-            
+        <div className="card">
           <ol>
-            <li>{plant.name}</li>
+          
+            <div className='container'>
+            <li list-style='none'>{plant.name}</li>
             <li>Owner: {plant.user.name}</li>
             <li>{plant.location}</li>
             <li>{plant.plant_type}</li>
             <li>{plant.care}</li>
             <button onClick={handleDelete} >delete Plant</button>
             <button onClick={toggleButton} >Update Plant</button>
+         
+            </div>
+            
             {showButton ?                           
             <form onSubmit={handlePlantUpdate}>
                 <h1>Update A Plant</h1>
@@ -83,6 +88,7 @@ function PlantCard({plant, deletePlant,updatePlant}){
                 <input placeholder="Plant Type" onChange={(e) => setPlantType(e.target.value)}></input>
                 <input placeholder="Care" onChange={(e) => setCare(e.target.value)}></input>
                 <input placeholder="Owner" onChange={(e) => setOwner(e.target.value)}></input>
+                <br/>
                 <input type='submit' value='Update'></input>
             </form>
             : null}

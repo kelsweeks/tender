@@ -4,6 +4,7 @@ import './App.css';
 import { Route, Switch } from 'react-router';
 import LoggedIn from './LoggedIn';
 import LoggedOut from './LoggedOut';
+import logomain from "../src/images/logomain.png"
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,12 +30,12 @@ function App() {
     fetch('/users', {method: "DELETE"})
     .then(()=> history.push('/login'))
     }
- 
+    console.log(isAuthenticated)
   return (
     <div className="App">
-        <h1 className="text-3xl text-gray-700 font-bold mb-5">Tenders</h1>
+        <img src={logomain} width={100} className='logo'></img>
         <Route path='/'>    
-          {isAuthenticated ? <LoggedIn logout={logout}/> : <LoggedOut/>}
+          {isAuthenticated ? <LoggedIn logout={logout} /> : <LoggedOut setIsAuthenticated={setIsAuthenticated}/>}
         </Route>
     </div>
   );

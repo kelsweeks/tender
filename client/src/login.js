@@ -2,9 +2,10 @@ import React from "react";
 import {useHistory} from 'react-router-dom'
 import {useState} from "react"
 
-function Login() {
+function Login({setIsAuthenticated}) {
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
+    const[refresh, setRefresh] = useState(false)
 
     const history = useHistory()
     const [errors, setErrors] = useState([])
@@ -23,7 +24,9 @@ function Login() {
           .then(res => {
               if(res.ok){
                   res.json().then(user => {
+                    setIsAuthenticated(true)
                       history.push(`/plants`)
+
                   })
               }else {
                   res.json().then(json => setErrors(json.errors))

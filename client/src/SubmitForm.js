@@ -2,7 +2,7 @@ import React from "react"
 import { useState, useEffect} from "react"
 import {useHistory} from "react-router-dom"
 
-function SubmitForm() {
+function SubmitForm({setIsAuthenticated}) {
     const [username, setUserName] = useState('')
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
@@ -27,7 +27,8 @@ function SubmitForm() {
                .then(res => {
                 if(res.ok){
                     res.json().then(user => {
-                        history.push(`/home`)
+                        setIsAuthenticated(true)
+                        history.push(`/plants`)
                     })
                 }else {
                     res.json().then(json => setErrors(Object.entries(json.errors)))

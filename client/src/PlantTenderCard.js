@@ -6,7 +6,7 @@ function PlantTenderCard({plantTender}){
     
 
     return (
-        <div className="plants">
+        <div className="tendercard">
         <ol>{plantTender.name}</ol>
         <li>{plantTender.phone}</li>
         </div>

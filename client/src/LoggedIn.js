@@ -5,12 +5,13 @@ import PlantTender from './PlantTender';
 import NavBar from "./NavBar";
 
 
-function LoggedIn({logout}) {
+function LoggedIn({logout,}) {
 
 
     return (
         <div>
         <NavBar />
+        <button onClick={logout} className="logout">log out!</button>
         <Switch>
             <Route strict path="/plants">
                 <Plants />
@@ -19,7 +20,6 @@ function LoggedIn({logout}) {
                 <PlantTender />
             </Route>
         </Switch>
-        <button onClick={logout}>log out!</button>
         </div>
     )
 }
